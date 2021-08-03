@@ -33,6 +33,28 @@ public class StringIntegerInterconversion {
   public static int stringToInt(String s) {
     // TODO - you fill in here.
 
+    // Brute force
+    //return stringToIntBruteForce(s);
+
+    // This is better solution compared to stringToIntBruteForce() because, the number of multiplication operation by 10 is less.
+    // In brute force in every iteration, the number is multiplied by power of 10. While in this solution, the partial is result is kept
+    // and multiplied by only 10 each time. So little better than calculating power of 10 each time.
+    return stringToIntBestSol(s);
+  }
+
+  private static int stringToIntBestSol(String s) {
+    int result = 0;
+    boolean isNegative = s.charAt(0) == '-';
+    boolean isPos = s.charAt(0) == '+';
+
+    for (int i=isNegative || isPos ? 1 : 0; i<s.length(); i++) {
+      result = result * 10 + s.charAt(i) - '0';
+    }
+
+    return isNegative ? -result : result;
+  }
+
+  private static int stringToIntBruteForce(String s) {
     long result = 0;
     boolean isNumberNegative = s.charAt(0) == '-';
     s = (s.charAt(0) == '+' || s.charAt(0) == '-') ? s.substring(1) : s;
