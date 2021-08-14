@@ -6,7 +6,18 @@ public class IsStringPalindromic {
 
   public static boolean isPalindromic(String s) {
     // TODO - you fill in here.
-    return true;
+    int i = 0;
+    int j = s.length() - 1;
+    boolean isPalindrome = true;
+    while(i < j) {
+      if (s.charAt(i) != s.charAt(j)) {
+        isPalindrome = false;
+        break;
+      }
+      i++;
+      j--;
+    }
+    return isPalindrome;
   }
 
   public static void main(String[] args) {
