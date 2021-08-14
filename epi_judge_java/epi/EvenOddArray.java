@@ -11,8 +11,19 @@ public class EvenOddArray {
 
   public static void evenOdd(List<Integer> A) {
     // TODO - you fill in here.
-    return;
+    int even_i = 0;
+    int odd_i = A.size() - 1;
+
+    while (even_i < odd_i) {
+      if (A.get(even_i) % 2 != 0) {
+        Collections.swap(A, even_i, odd_i);
+        odd_i--;
+      } else {
+        even_i++;
+      }
+    }
   }
+
   @EpiTest(testDataFile = "even_odd_array.tsv")
   public static void evenOddWrapper(TimedExecutor executor, List<Integer> A)
       throws Exception {
