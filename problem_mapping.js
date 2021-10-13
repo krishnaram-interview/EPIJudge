@@ -1304,7 +1304,7 @@ problem_mapping = {
                 "total": 314
             },
             "Java: SearchFirstKey.java": {
-                "passed": 0,
+                "passed": 314,
                 "total": 314
             },
             "Python: search_first_key.py": {
@@ -1446,7 +1446,7 @@ problem_mapping = {
                 "total": 9
             },
             "Java: Anagrams.java": {
-                "passed": 0,
+                "passed": 9,
                 "total": 9
             },
             "Python: anagrams.py": {
