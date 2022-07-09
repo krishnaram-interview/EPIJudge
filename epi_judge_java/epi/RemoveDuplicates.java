@@ -39,17 +39,28 @@ public class RemoveDuplicates {
 
     @Override
     public int compareTo(Name name) {
-      int cmpFirst = firstName.compareTo(name.firstName);
-      if (cmpFirst != 0) {
-        return cmpFirst;
-      }
-      return lastName.compareTo(name.lastName);
+//      int cmpFirst = firstName.compareTo(name.firstName);
+//      if (cmpFirst != 0) {
+//        return cmpFirst;
+//      }
+//      return lastName.compareTo(name.lastName);
+      return firstName.compareTo(name.firstName);
     }
   }
+
   public static void eliminateDuplicate(List<Name> names) {
     // TODO - you fill in here.
-    return;
+    Collections.sort(names);
+    int i = 0;
+    while (i < names.size()) {
+      if (i != 0 && (names.get(i).firstName.equals(names.get(i-1).firstName))) {
+        names.remove(i);
+        continue;
+      }
+      i++;
+    }
   }
+
   @EpiTest(testDataFile = "remove_duplicates.tsv")
   public static List<Name> eliminateDuplicateWrapper(List<Name> names) {
     eliminateDuplicate(names);

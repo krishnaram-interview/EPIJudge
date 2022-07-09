@@ -34,7 +34,7 @@ problem_mapping = {
                 "total": 10001
             },
             "Java: SwapBits.java": {
-                "passed": 0,
+                "passed": 10001,
                 "total": 10001
             },
             "Python: swap_bits.py": {
@@ -1616,7 +1616,7 @@ problem_mapping = {
                 "total": 202
             },
             "Java: IntersectSortedArrays.java": {
-                "passed": 0,
+                "passed": 202,
                 "total": 202
             },
             "Python: intersect_sorted_arrays.py": {
@@ -1630,7 +1630,7 @@ problem_mapping = {
                 "total": 201
             },
             "Java: TwoSortedArraysMerge.java": {
-                "passed": 0,
+                "passed": 201,
                 "total": 201
             },
             "Python: two_sorted_arrays_merge.py": {
@@ -1658,7 +1658,7 @@ problem_mapping = {
                 "total": 202
             },
             "Java: RemoveDuplicates.java": {
-                "passed": 0,
+                "passed": 202,
                 "total": 202
             },
             "Python: remove_duplicates.py": {
