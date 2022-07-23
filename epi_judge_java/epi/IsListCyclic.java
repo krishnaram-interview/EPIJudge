@@ -1,4 +1,8 @@
 package epi;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 import epi.test_framework.EpiTest;
 import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
@@ -7,8 +11,39 @@ public class IsListCyclic {
 
   public static ListNode<Integer> hasCycle(ListNode<Integer> head) {
     // TODO - you fill in here.
+
+    ListNode<Integer> fast = head;
+    ListNode<Integer> slow = head;
+    while (fast != null && fast.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+
+      if (slow == fast) {
+        // determine cycle length
+        int cycleLength = 0;
+        do {
+          ++cycleLength;
+          fast = fast.next;
+        } while (fast != slow);
+
+        // Determine head of cycle
+        ListNode<Integer> p1 = head;
+        ListNode<Integer> p2 = head;
+        while (cycleLength-- > 0) {
+          p2 = p2.next;
+        }
+
+        while (p1 != p2) {
+          p1 = p1.next;
+          p2 = p2.next;
+        }
+
+        return p1;
+      }
+    }
     return null;
   }
+
   @EpiTest(testDataFile = "is_list_cyclic.tsv")
   public static void HasCycleWrapper(TimedExecutor executor,
                                      ListNode<Integer> head, int cycleIdx)
