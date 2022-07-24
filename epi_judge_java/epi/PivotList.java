@@ -6,13 +6,50 @@ import epi.test_framework.TimedExecutor;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 public class PivotList {
 
   public static ListNode<Integer> listPivoting(ListNode<Integer> l, int x) {
     // TODO - you fill in here.
-    return null;
+
+    // O(n) time and O(1) space. The best solution
+    if (l == null || l.next == null) {
+      return l;
+    }
+
+    ListNode<Integer> greaterDummyHead = new ListNode<>(0, null);
+    ListNode<Integer> equalDummyHead = new ListNode<>(0, null);
+    ListNode<Integer> lessDummyHead = new ListNode<>(0, null);
+
+    Map<Integer, ListNode<Integer>> result = new HashMap<>();
+    result.put(0, greaterDummyHead);
+    result.put(1, equalDummyHead);
+    result.put(2, lessDummyHead);
+
+    while (l != null) {
+      if (l.data > x) {
+        result.get(0).next = l;
+        result.put(0, l);
+      } else if (l.data == x) {
+        result.get(1).next = l;
+        result.put(1, l);
+      } else {
+        result.get(2).next = l;
+        result.put(2, l);
+      }
+      l = l.next;
+    }
+
+    result.get(0).next = null;
+    result.get(1).next = greaterDummyHead.next;
+    result.get(2).next = equalDummyHead.next;
+
+    return lessDummyHead.next;
   }
+
   public static List<Integer> linkedToList(ListNode<Integer> l) {
     List<Integer> v = new ArrayList<>();
     while (l != null) {
