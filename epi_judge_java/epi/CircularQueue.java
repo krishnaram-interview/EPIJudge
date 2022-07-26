@@ -8,25 +8,73 @@ import java.util.List;
 public class CircularQueue {
 
   public static class Queue {
-    public Queue(int capacity) {}
+    private static int RESIZE_FACTOR = 2;
+    private Integer[] queue;
+    private int size = 0;
+    private int front = 0;
+    private int rear = 0;
+
+    public Queue(int capacity) {
+      queue = new Integer[capacity];
+    }
+
     public void enqueue(Integer x) {
       // TODO - you fill in here.
-      return;
+
+      if (size == queue.length) {
+        int newCapacity = size * 2;
+        Integer[] newQueue = new Integer[newCapacity];
+        int f = front;
+        for (int j = 0; j < size; j++) {
+          newQueue[j] = queue[f];
+          f = (f+1) % size;
+        }
+        front = 0;
+        rear = size;
+        queue = newQueue;
+      }
+
+      queue[rear] = x;
+      rear = (rear + 1) % queue.length;
+      size++;
     }
+
     public Integer dequeue() {
       // TODO - you fill in here.
-      return 0;
+
+      if (size <= 0) {
+        throw new RuntimeException("Queue is empty");
+      }
+
+      Integer val = queue[front];
+      queue[front] = null;
+      front = (front + 1) % queue.length;
+      size--;
+      return val;
     }
+
     public int size() {
       // TODO - you fill in here.
-      return 0;
+      return size;
     }
+
     @Override
     public String toString() {
       // TODO - you fill in here.
-      return super.toString();
+      StringBuilder sb = new StringBuilder();
+      if (size > 0) {
+        for (int i=front; i<size; i++, i=i%size) {
+          if (i == size-1) {
+            sb.append(queue[i]);
+          } else {
+            sb.append(queue[i]).append("->");
+          }
+        }
+      }
+      return sb.toString();
     }
   }
+
   @EpiUserType(ctorParams = {String.class, int.class})
   public static class QueueOp {
     public String op;
