@@ -10,8 +10,8 @@ public class IsTreeSymmetric {
 
   public static boolean isSymmetric(BinaryTreeNode<Integer> tree) {
     // TODO - you fill in here.
-    //return mySolution(tree);
-    return bestSolution(tree);
+    return mySolution(tree);
+    //return bestSolution(tree);
   }
 
   // Time complexity -> O(n) and space complexity -> O(h)
@@ -40,12 +40,11 @@ public class IsTreeSymmetric {
   private static boolean mySolution(BinaryTreeNode<Integer> tree) {
     if (tree == null) {
       return true;
-    } else {
-      List<Integer> leftTreeResult = inOrderData(tree.left);
-      List<Integer> rightTreeResult = inOrderData(tree.right);
-      Collections.reverse(rightTreeResult);
-      return leftTreeResult.equals(rightTreeResult);
     }
+    List<Integer> ld = inOrderData(tree.left);
+    List<Integer> rd = inOrderData(tree.right);
+    Collections.reverse(rd);
+    return ld.equals(rd);
   }
 
   private static List<Integer> inOrderData(BinaryTreeNode<Integer> root) {
@@ -53,22 +52,11 @@ public class IsTreeSymmetric {
       return new ArrayList<>();
     }
 
-    List<Integer> result = new ArrayList<>();
     List<Integer> left = inOrderData(root.left);
-
-    if (!left.isEmpty()) {
-      result.addAll(left);
-    }
-
-    result.add(root.data);
-
+    left.add(root.data);
     List<Integer> right = inOrderData(root.right);
-
-    if (!right.toString().isBlank()) {
-      result.addAll(right);
-    }
-
-    return result;
+    left.addAll(right);
+    return left;
   }
 
   public static void main(String[] args) {
